@@ -1,0 +1,1 @@
+browser-sync: browser-sync start --proxy "localhost/pizzatime" --files "**/*" --no-notify
