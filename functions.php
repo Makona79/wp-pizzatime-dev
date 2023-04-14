@@ -52,6 +52,7 @@ add_action('carbon_fields_register_fields', 'register_carbon_fields');
 function register_carbon_fields()
 {
 	require_once('includes/carbon-fields-options/theme-options.php');
+	require_once('includes/carbon-fields-options/post-meta.php');
 }
 
 add_action('init', 'create_global_variable');
@@ -67,4 +68,11 @@ function create_global_variable()
 		'fb_url' => carbon_get_theme_option('site_fb_url'),
 		'inst_url' => carbon_get_theme_option('site_inst_url'),
 	];
+}
+
+
+function convertToWebpSrc($src)
+{
+	$src_webp = $src . '.webp';
+	return $src_webp;
 }

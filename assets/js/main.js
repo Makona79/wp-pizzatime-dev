@@ -305,13 +305,15 @@
 		}
 
 		ymaps.ready(function () {
-			var ymap = document.querySelector('contacts__map');
-			var coordinates = ymap.getAttribute('data-coordinates');
-			var address = ymap.getAttribute('data-address');
+			var ymap = document.querySelector('.contacts__map');
+
+			var coordinates = ymap?.getAttribute('data-coordinates');
+
+			var address = ymap?.getAttribute('data-address');
 
 
 			var myMap = new ymaps.Map('ymap', {
-				center: coordinates.split(','),
+				center: coordinates?.split(','),
 				zoom: 16
 			}, {
 				searchControlProvider: 'yandex#search'

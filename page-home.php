@@ -3,27 +3,46 @@
 Template Name: Главная 
 */
 ?>
-
+<?php $page_id = get_the_ID() ?>
 <?php get_header(); ?>
 
 
 <!-- section-top -->
-<section class="section-top lazy" data-src="img/section-top/bg.webp" data-src-replace-webp="img/section-top/bg.jpg">
+<?php
+$top_img_id = carbon_get_post_meta($page_id, 'top_image');
+$top_img_src = wp_get_attachment_image_url($top_img_id, 'full');
+$top_img_src_webp = convertToWebpSrc($top_img_src);
+?>
+<section class="section-top lazy" data-src="<?php echo $top_img_src_webp; ?>"
+	data-src-replace-webp="<?php echo $top_img_src; ?>">
 	<div class="container section-top__container">
-		<p class="section-top__info">от итальянского повара</p>
-		<h1 class="section-top__title">Лучшая пицца в Москве</h1>
+		<p class="section-top__info">
+			<?php echo carbon_get_post_meta($page_id, 'top_info') ?>
+		</p>
+		<h1 class="section-top__title">
+			<?php echo carbon_get_post_meta($page_id, 'top_title') ?>
+		</h1>
 		<div class="section-top__btn">
-			<button class="btn" type="button" data-scroll-to="section-catalog">Выбрать</button>
+			<button class="btn" type="button"
+				data-scroll-to="<?php echo carbon_get_post_meta($page_id, 'top_btn_scroll_to') ?>">
+				<?php echo carbon_get_post_meta($page_id, 'top_btn_text') ?>
+			</button>
 		</div>
 	</div>
 </section>
 <!-- /.section-top -->
+<?php
+
+// echo wp_get_attachment_image_url(carbon_get_post_meta($page_id, 'top_image'), 'full');
+?>
 
 <!-- section-catalog -->
 <section class="section section-catalog" id="section-catalog">
 	<div class="container">
 		<header class="section__header">
-			<h2 class="page-title page-title--accent">Меню</h2>
+			<h2 class="page-title page-title--accent">
+				<?php echo carbon_get_post_meta($page_id, 'catalog_title') ?>
+			</h2>
 			<nav class="catalog-nav">
 				<ul class="catalog-nav__wrapper">
 					<li class="catalog-nav__item">
@@ -333,16 +352,19 @@ Template Name: Главная
 	<picture>
 		<source type="image/webp"
 			srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-			data-srcset="img/section-about/bg.webp">
+			data-srcset="<?php echo get_template_directory_uri(); ?>/assets/img/section-about/bg.webp">
 		<img class="section-about__img lazy"
 			src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-			data-src="img/section-about/bg.jpg" alt="">
+			data-src="<?php echo get_template_directory_uri(); ?>/assets/img/section-about/bg.jpg" alt="">
 	</picture>
 	<div class="container section-about__container">
 		<div class="section-about__content">
-			<h2 class="page-title section-about__title">О нас</h2>
-			<p class="section-about__text">Доставим вам горячую пиццу менее чем за час или пицца бесплатно.
-				Мы готовим пиццу только из свежих продуктов. Каждый день мы покупаем свежие овощи, грибы и мясо.</p>
+			<h2 class="page-title section-about__title">
+				<?php echo carbon_get_post_meta($page_id, 'about_title') ?>
+			</h2>
+			<p class="section-about__text">
+				<?php echo carbon_get_post_meta($page_id, 'about_text') ?>
+			</p>
 		</div>
 	</div>
 </section>
@@ -351,17 +373,22 @@ Template Name: Главная
 <!-- section-contacts -->
 <section class="section section-contacts">
 	<div class="container section-contacts__container">
-		<div class="section-contacts__img lazy" data-src="img/section-contacts/tomatoes.webp"
-			data-src-replace-webp="img/section-contacts/tomatoes.jpg"></div>
+		<?php if (carbon_get_post_meta($page_id, 'contact_is_image')): ?>
+			<div class="section-contacts__img lazy"
+				data-src="<?php echo get_template_directory_uri(); ?>/assets/img/section-contacts/tomatoes.jpg"
+				data-src-replace-webp="<?php echo get_template_directory_uri(); ?>/assets/img/section-contacts/tomatoes.webp">
+			</div>
+		<?php endif; ?>
 		<header class="section__header">
-			<h2 class="page-title sectoin-contacts__title">Контакты</h2>
+			<h2 class="page-title sectoin-contacts__title">
+				<?php echo carbon_get_post_meta($page_id, 'contacts_title') ?>
+			</h2>
 		</header>
 		<div class="contacts">
 			<div class="contacts__start">
 				<div class="contacts__map" id="ymap"
 					data-coordinates="<?php echo $GLOBALS['pizza_time']['map_coordinates']; ?>"
-					data-address="<?php echo $GLOBALS['pizza_time']['address']; ?>">
-				</div>
+					data-address="<?php echo $GLOBALS['pizza_time']['address']; ?>"></div>
 			</div>
 			<div class="contacts__end">
 				<?php if ($GLOBALS['pizza_time']['address']): ?>

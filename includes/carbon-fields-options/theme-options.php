@@ -10,6 +10,7 @@ use Carbon_Fields\Field;
 Container::make('theme_options', 'Настройки сайта')
 	->add_tab('Общие настройки', [
 		Field::make('image', 'site_logo', 'Логотип'),
+		Field::make('text', 'site_footer_text', 'Текст в подвале'),
 	])
 
 	->add_tab('Контакты', [
