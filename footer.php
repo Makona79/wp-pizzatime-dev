@@ -14,20 +14,19 @@
 			<div class="popup__content popup__content--fluid popup__content--centered">
 				<button class="btn-close popup__btn-close popup-close"></button>
 				<nav class="mobile-menu popup__mobile-menu">
-					<ul class="mobile-menu__ul">
-						<li class="mobile-menu__li">
-							<a class="mobile-menu__link popup-close" href="#" data-scroll-to="section-catalog">Пицца</a>
-						</li>
-						<li class="mobile-menu__li">
-							<a class="mobile-menu__link popup-close" href="#" data-scroll-to="section-about">О нас</a>
-						</li>
-						<li class="mobile-menu__li">
-							<a class="mobile-menu__link popup-close" href="#" data-scroll-to="section-contacts">Контакты</a>
-						</li>
-					</ul>
+					<?php
+					wp_nav_menu([
+						'theme_location' => 'menu_main_header',
+						'container' => null,
+						'menu_class' => 'mobile-menu__ul popup-close',
+					]);
+					?>
 				</nav>
 				<div class="phone popup__phone">
-					<a class="phone__item phone__item--accent" href="tel:+79999999999">+7 (999) 999-99-99</a>
+					<a class="phone__item phone__item--accent"
+						href="tel:<?php echo $GLOBALS['pizza_time']['phone_digits']; ?>">
+						<?php echo $GLOBALS['pizza_time']['phone']; ?>
+					</a>
 				</div>
 				<ul class="socials">
 					<li class="socials__item">
@@ -134,7 +133,9 @@
 				<button class="btn-close popup__btn-close popup-close"></button>
 				<h2 class="page-title popup__title">Произошла ошибка</h2>
 				<p class="popup__subtitle">Пожалуйста, сделайте заказ по номеру <a class="popup__link"
-						href="+79999999999">+7 (999) 999-99-99</a></p>
+						href="tel:<?php echo $GLOBALS['pizza_time']['phone_digits']; ?>">
+						<?php echo $GLOBALS['pizza_time']['phone']; ?></a>
+				</p>
 			</div>
 		</div>
 	</div>

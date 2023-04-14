@@ -121,8 +121,9 @@
 
 	myLib.body.addEventListener('click', function (e) {
 		var target = e.target;
+		var popupItemClose = myLib.closestItemByClass(target, 'popup-close');
 
-		if (target.classList.contains('popup-close') ||
+		if (popupItemClose ||
 			target.classList.contains('popup__inner')) {
 			var popup = myLib.closestItemByClass(target, 'popup');
 
@@ -304,15 +305,20 @@
 		}
 
 		ymaps.ready(function () {
+			var ymap = document.querySelector('contacts__map');
+			var coordinates = ymap.getAttribute('data-coordinates');
+			var address = ymap.getAttribute('data-address');
+
+
 			var myMap = new ymaps.Map('ymap', {
-				center: [55.755241, 37.617779],
+				center: coordinates.split(','),
 				zoom: 16
 			}, {
 				searchControlProvider: 'yandex#search'
 			}),
 
 				myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-					balloonContent: 'г. Москва, Преображенская площадь, 8'
+					balloonContent: address
 				}, {
 					iconLayout: 'default#image',
 					iconImageHref: WPJS.siteUrl + '/assets/img/common/marker.svg',

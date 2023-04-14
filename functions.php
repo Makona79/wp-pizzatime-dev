@@ -24,7 +24,7 @@ function site_scripts()
 	wp_deregister_script('wp-embed');
 
 	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css?family=Montserrat:900%7CRoboto:300&display=swap&subset=cyrillic', [], $version);
-	wp_enqueue_style('main-style', get_stylesheet_uri(), [], $version);
+	wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/style.css', [], $version);
 
 	wp_enqueue_script('focus-visible', 'https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js', [], $version, true);
 	wp_enqueue_script('lazy-load', 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.4.0/dist/lazyload.min.js', [], $version, true);
