@@ -61,288 +61,33 @@ $top_img_src_webp = convertToWebpSrc($top_img_src);
 			</nav>
 		</header>
 
-		<div class="catalog">
-			<div class="catalog__item" data-category="mushrooms">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/1.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/1.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Салями</h3>
-						<p class="product__description">Салями, картофель и морковь, огурцы маринованные, моцарелла, цыпленок,
-							ветчина и французский соус </p>
+		<?php
+		$catalog_products = carbon_get_post_meta($page_id, 'catalog_products');
+		$catalog_products_ids = wp_list_pluck($catalog_products, 'id');
+
+		$catalog_products_args = [
+			'post_type' => 'product',
+			'post__in' => $catalog_products_ids
+		];
+		$catalog_products_query = new WP_Query($catalog_products_args);
+		?>
+
+
+		<?php if ($catalog_products_query->have_posts()): ?>
+			<div class="catalog">
+
+				<?php while ($catalog_products_query->have_posts()):
+					$catalog_products_query->the_post(); ?>
+					<div class="catalog__item" data-category="mushrooms">
+						<?php echo get_template_part('product-content'); ?>
 					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">850</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="meat">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/2.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/2.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Хит</h3>
-						<p class="product__description">Картофель и морковь, огурцы
-							маринованные, моцарелла, цыпленок,
-							ветчина и французский соус </p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">950</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="cheese">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/3.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/3.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Ветчина-грибы</h3>
-						<p class="product__description">Салями, картофель и морковь, огурцы
-							маринованные, моцарелла, цыпленок,
-							ветчина и французский соус </p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">880</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="cheese">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/4.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/4.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Карбонара</h3>
-						<p class="product__description">Салями, картофель и морковь, огурцы маринованные, моцарелла, цыпленок,
-							ветчина и французский соус </p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">1250</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="cheese">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/5.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/5.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Фирменная</h3>
-						<p class="product__description">Томатно-сливочный соус, бекон, моцарелла</p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">890</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="meat">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/6.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/6.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Ассорти</h3>
-						<p class="product__description">Картофель моцарелла, цыпленок, грибы,
-							ветчина и французский соус </p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">850</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="mushrooms">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/7.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/7.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Л-01</h3>
-						<p class="product__description">Томаты, моцарелла, цыпленок,
-							ветчина и французский соус, секректный ингредиент </p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">920</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="mushrooms">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/8.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/8.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Три сыра</h3>
-						<p class="product__description">Чеддер, камамбер, эдам</p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">990</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-			<div class="catalog__item" data-category="mushrooms">
-				<div class="product catalog__product">
-					<picture>
-						<source type="image/webp"
-							srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-srcset="img/section-catalog/9.webp">
-						<img class="product__img lazy"
-							src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-							data-src="img/section-catalog/9.png" alt="">
-					</picture>
-					<div class="product__content">
-						<h3 class="product__title">Мясная</h3>
-						<p class="product__description">Курица, говядина, сливочный соус, салями,
-							огурцы маринованные, томаты, грибы,
-							бекон</p>
-					</div>
-					<footer class="product__footer">
-						<div class="product__sizes">
-							<button data-product-size-price="950" class="product__size is-active" type="button">35см</button>
-							<button data-product-size-price="850" class="product__size" type="button">30см</button>
-							<button data-product-size-price="650" class="product__size" type="button">25см</button>
-						</div>
-						<div class="product__bottom">
-							<div class="product__price">
-								<span class="product__price-value">950</span>
-								<span class="product__currency">&#8381;</span>
-							</div>
-							<button class="btn product__btn" type="button" data-popup="popup-order">заказать</button>
-						</div>
-					</footer>
-				</div>
-			</div>
-		</div>
+				<?php endwhile; ?>
+			</div><!-- /.catalog -->
+		<?php endif; ?>
+
+
+
+
 	</div>
 </section>
 <!-- /.section-catalog -->

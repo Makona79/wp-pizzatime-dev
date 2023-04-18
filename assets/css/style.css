@@ -774,6 +774,7 @@ img {
 	margin: 0 auto 15px;
 	width: 340px;
 	height: 207px;
+	object-fit: cover;
 }
 
 .product__title {
@@ -811,13 +812,16 @@ img {
 	color: #e6e6e6;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 900;
-	padding: 13px 33px;
+	padding: 13px 31px;
 	border-radius: 21px;
+	transition: flex-grow 0.4s;
+	flex-grow: 1;
 }
 
 .product__size.is-active {
 	color: #a2a2a2;
 	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.08);
+	flex-grow: 2;
 }
 
 .product__price {
@@ -851,13 +855,13 @@ img {
 
 @media (min-width: 993px) and (max-width: 1200px) {
 	.product__size {
-		padding: 13px 25px;
+		padding: 13px 22px;
 	}
 }
 
 @media (max-width: 370px) {
 	.product__size {
-		padding: 13px 25px;
+		padding: 13px 22px;
 	}
 }
 

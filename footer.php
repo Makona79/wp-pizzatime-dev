@@ -120,7 +120,7 @@
 			<div class="popup__content">
 				<button class="btn-close popup__btn-close popup-close"></button>
 				<h2 class="page-title popup__title">Успешно отправлено</h2>
-				<p class="popup__subtitle">Мы уже начали готовить вашу пиццу</p>
+				<p class="popup__subtitle">Мы уже начали готовить ваш заказ</p>
 			</div>
 		</div>
 	</div>

@@ -21,6 +21,13 @@ Container::make('post_meta', 'Дополнительные поля')
 	])
 	->add_tab('Каталог', [
 		Field::make('text', 'catalog_title', 'Заголовок'),
+		Field::make('association', 'catalog_products', 'Товары')
+			->set_types([
+				[
+					'type' => 'post',
+					'post_type' => 'product',
+				]
+			])
 	])
 	->add_tab('О нас', [
 		Field::make('text', 'about_title', 'Заголовок'),
@@ -36,4 +43,18 @@ Container::make('post_meta', 'Дополнительные поля')
 
 	->add_tab('Информация о странице', [
 		Field::make('media_gallery', 'gallery', 'Галерея')
+	]);
+
+
+Container::make('post_meta', 'Дополнительные поля')
+	->show_on_post_type('product')
+
+	->add_tab('Информация о товаре', [
+		Field::make('text', 'product_price', 'Цена'),
+		Field::make('complex', 'product_attributes', 'Атрибуты')
+			->set_max(3)
+			->add_fields([
+				Field::make('text', 'name', 'Название')->set_width(50),
+				Field::make('text', 'price', 'Цена')->set_width(50),
+			])
 	]);

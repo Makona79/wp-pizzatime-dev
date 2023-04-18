@@ -264,9 +264,9 @@
 		var product = myLib.closestItemByClass(target, 'product');
 		var order = document.querySelector('.popup-order');
 
-		var productTitle = product.querySelector('.product__title').textContent;
-		var productSize = product.querySelector('.product__size.is-active').textContent;
-		var productPrice = product.querySelector('.product__price-value').textContent;
+		var productTitle = product.querySelector('.product__title')?.textContent;
+		var productSize = product.querySelector('.product__size.is-active')?.textContent;
+		var productPrice = product.querySelector('.product__price-value')?.textContent;
 		var productImgSrc = product.querySelector('.product__img').getAttribute('src');
 
 		order.querySelector('.order-info-title').setAttribute('value', productTitle);
